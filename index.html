@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TBLater Version 1.0 - Table File Manager</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="window">
+      <div class="title-bar">WebTBFM Version 1.0 - Table File Manager</div>
+      <div class="menu-bar">
+        <span>
+          Файл
+          <div class="dropdown">
+            <div onclick="openNewModal()">Новий</div>
+            <div onclick="openTable()">Відкрити</div>
+            <div onclick="saveTable()">Зберегти</div>
+            <div onclick="saveTableAs()">Зберегти як</div>
+          </div>
+        </span>
+
+        <span>
+          Автоматизація
+          <div class="dropdown">
+            <div onclick="autoEnglishAlphabet()">Авто "A-Z"</div>
+            <div onclick="autoUkrainianAlphabet()">Авто "А-Я"</div>
+            <div onclick="autoEnglishAlphabetLowerCase()">Авто "a-z"</div>
+            <div onclick="autoUkrainianAlphabetLowerCase()">Авто "а-я"</div>
+            <div onclick="autoNumber()">Авто "0-9"</div>
+          </div>
+        </span>
+      </div>
+
+      <div class="table-container">
+        <table id="data-table">
+          <tr>
+            <th></th>
+            <th>0</th>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+            <th>6</th>
+            <th>7</th>
+            <th>8</th>
+            <th>9</th>
+            <th>A</th>
+            <th>B</th>
+            <th>C</th>
+            <th>D</th>
+            <th>E</th>
+            <th>F</th>
+          </tr>
+          <script>
+            document.write(
+              [...Array(16).keys()]
+                .map((i) => {
+                  const rowLabel = i.toString(16).toUpperCase();
+                  const cells = [...Array(16).keys()]
+                    .map(
+                      () => '<td><input class="cell-input" maxlength="1"></td>'
+                    )
+                    .join("");
+                  return `<tr><th>${rowLabel}</th>${cells}</tr>`;
+                })
+                .join("")
+            );
+          </script>
+        </table>
+      </div>
+      <div class="status-bar" id="status-bar">Program loaded.</div>
+      <input type="file" id="file-input" style="display: none" />
+    </div>
+
+    <div id="reset-modal" class="modal">
+      <div class="modal-content">
+        <p>Are you sure you want to reset the grid?</p>
+        <button class="modal-button" id="yes-button">Yes</button>
+        <button class="modal-button" id="no-button">No</button>
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
